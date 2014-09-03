@@ -1,0 +1,46 @@
+@(albums: List[Album])
+
+    @import helper._
+
+    @main("Todo list") {
+
+        <div class="row">
+            <div class="col-md-24">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Albums</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class = "table_wrapper flexcroll">
+                            <table class="table table-hover friends">
+                                <thead>
+                                    <tr class="row">
+                                        <td>Name</td>
+                                        <td>User Picasa Id</td>
+                                        <td>Album Picasa Id</td>
+                                        <td>Country Code</td>
+                                        <td>Foursquare User Id</td>
+                                        <td>City</td>
+                                        <td>Created</td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                @albums.map { album =>
+                                    <tr class="row">
+                                        <td>@album.name</td>
+                                        <td>@album.userPicasaId</td>
+                                        <td>@album.albumPicasaId</td>
+                                        <td>@album.cc</td>
+                                        <td>@album.FQUserId</td>
+                                        <td>@album.city</td>
+                                        <td>@album.created</td>
+                                    </tr>
+                                }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }

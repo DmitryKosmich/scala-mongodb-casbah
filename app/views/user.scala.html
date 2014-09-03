@@ -1,0 +1,120 @@
+@(user: User, friends: List[User], albums: List[Album])
+
+@import helper._
+
+@main("Todo list") {
+    <div class="row">
+        <div class="col-md-24">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title leftstr">@user.name @user.surname</h3>
+                    <span class="panel-title rightstr trivial_text" ></span>
+                    <span class="clearfix"></span>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <div id = "user_avatar_wrapper">
+                                        <img id = "user_avatar" src="@user.avatarSrc">
+                                    </div>
+                                </div>
+                                <div class="panel-body" style="text-align: center">
+                                    <a href="#" id = "send_message" class="send_message_button">
+                                        <span>@user.name @user.surname</span>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title trivial_text"><a href="@routes.UserCtrl.friends(user.FQUserId)" id = 'friends_head'>Friends</a></h3>
+                                </div>
+                                <div class="panel-body">
+                                    <ul id = 'friends_body'>
+                                    @friends.map { friend =>
+                                        <li>@friend.name @friend.surname</li>
+                                    }
+                                    <li><a href="@routes.UserCtrl.friends(user.FQUserId)" id = 'friends_head'>. . .</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title trivial_text"><a href="@routes.AlbumCtrl.getAll(0,0)" id = 'albums_head'  data-localize="albums" >Albums</a></h3>
+                                </div>
+                                <div class="panel-body">
+                                    <ul id = 'albums_body'>
+                                        @albums.map { album =>
+                                            <li>@album.name</li>
+                                        }
+                                        <li><a href="@routes.AlbumCtrl.getAll(0, 0)" id = 'albums_head'  data-localize="albums" >. . .</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title trivial_text" ><a href="@routes.CountryCtrl.getAll" id = 'countries_head' data-localize="countries" >Countries</a></h3>
+                                </div>
+                                <div class="panel-body">
+                                    <ul id = 'countries_body'>
+                                        <li><a href="@routes.CountryCtrl.getAll" id = 'countries_head' data-localize="countries" >. . .</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-18">
+                            <div id = "user_info">
+                                <form role="form">
+                                    <div class="form-group">
+                                        <h1>
+                                            <span class="user_name">@user.name @user.surname</span>
+                                        </h1>
+                                        <hr>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="home"  data-localize="home_city">Home city</label>
+                                        <input type="text" class="form-control" id="home" value="@user.homeCity" readonly>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="email"  data-localize="email">Email</label>
+                                        <input type="text" class="form-control" id="email" value="@user.email" readonly>
+                                    </div>
+                                    <hr>
+                                    <div class="form-group">
+                                        <label for="user_points"  data-localize="points">Points</label>
+                                        <input type="text" class="form-control" id="user_points" value="@user.points" readonly>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="countries_count"  data-localize="countries_count">Countries count</label>
+                                        <input type="text" class="form-control" id="countries_count" readonly>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="cities_count"  data-localize="cities_count">Cities count</label>
+                                        <input type="text" class="form-control" id="cities_count" readonly>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="area"  data-localize="area">Area</label>
+                                        <input type="text" class="form-control" id="area" readonly>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="population"  data-localize="population">Population</label>
+                                        <input type="text" class="form-control" id="population" readonly>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="frinds_count"  data-localize="frinds_count">Frinds count</label>
+                                        <input type="text" class="form-control" id="frinds_count" readonly>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="albums_count"  data-localize="albums_count">Albums count</label>
+                                        <input type="text" class="form-control" id="albums_count" readonly>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}

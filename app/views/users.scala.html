@@ -1,0 +1,46 @@
+@(users: List[User])
+
+@import helper._
+
+@main("Todo list") {
+
+    <div class="row">
+        <div class="col-md-24">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Users</h3>
+                </div>
+                <div class="panel-body">
+                    <div class = "table_wrapper flexcroll">
+                        <table class="table table-hover friends">
+                            <thead>
+                                <tr class="row">
+                                    <td>Name</td>
+                                    <td>Surname</td>
+                                    <td>Home City</td>
+                                    <td>Emaail</td>
+                                    <td>Foursquare User Id</td>
+                                    <td>Last update</td>
+                                    <td>Points</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            @users.map { user =>
+                                <tr class="row">
+                                    <td><a href="@routes.UserCtrl.getOne(user.FQUserId)">@user.name</a></td>
+                                    <td>@user.surname</td>
+                                    <td>@user.homeCity</td>
+                                    <td>@user.email</td>
+                                    <td>@user.FQUserId</td>
+                                    <td>@user.lastUpdate</td>
+                                    <td>@user.points</td>
+                                </tr>
+                            }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}

@@ -1,0 +1,85 @@
+/*fonts*/
+@font-face {
+  font-family: 'TimeBurner'; /*a name to be used later*/
+  src: url('../fonts/timeburner_regular.ttf'); /*URL to font*/
+}
+
+/*main*/
+@brand-font: 'Cuprum',sans-serif;
+@body-bg: #202020;
+@brand-primary: rgba(41, 146, 163, 0.80);
+@border-radius-base: 0;
+@grid-columns: 24;
+
+/*text*/
+@font-family-base: Tahoma, sans-serif;
+@font-size-base: 14px;
+@text-color: rgba(255, 255, 255, 0.70);
+
+/*alerts*/
+@brand-success: rgba(107, 185, 38, 0.80);
+@brand-info: @brand-primary;
+@brand-danger: rgba(232, 98, 48, 0.80);
+@brand-warning: rgba(230, 192, 72, 0.80);
+
+/*map*/
+@brand-primary-map: @brand-primary;
+@brand-primary-map-bg: #666;
+
+/*panels*/
+@panel-header-bg-color: #2b2b2b;
+@panel-header-color: @text-color;
+@panel-bg: rgba(23, 23, 23, 0.91);
+@panel-inner-border: #313131;
+@panel-default-border: @panel-inner-border;
+@panel-primary-border: @panel-inner-border;
+
+/*buttons*/
+@btn-primary-bg: @brand-primary;
+@btn-default-bg: @panel-header-bg-color;
+@btn-default-color: @text-color;
+@btn-default-border: @panel-inner-border;
+
+/*screen*/
+@container-md: 960px;/*если ширина экрана больше 992px, то ширина контейнера 960px*/
+@container-lg: @container-md;/*если ширина экрана больше 1200px, то ширина контейнера так же 960px*/
+
+/*inputs*/
+@input-bg: @panel-header-bg-color;
+@input-border: @panel-inner-border;
+@input-color: #747474;
+@input-bg-disabled: @panel-header-bg-color;
+
+/*navbar*/
+@navbar-height: 37px;
+@nav-link-padding: 10px 30px;
+@navbar-default-border:@panel-inner-border;
+@navbar-default-bg: @panel-header-bg-color ;
+@navbar-default-link-color: @text-color;
+
+@navbar-default-link-hover-color: lighten(@text-color, 5%);
+@navbar-default-link-hover-bg: lighten(@panel-header-bg-color, 5%);
+
+@navbar-default-link-active-bg: @brand-primary;
+@navbar-default-link-active-color: @text-color;
+
+/*albums*/
+@album-bg: @panel-header-bg-color;
+@album-border-color: darken(@panel-inner-border, 10%);
+@album-border-color-hover: lighten(@panel-inner-border, 10%);
+
+/*images*/
+@image-loader-min: url('../images/loading-min.gif') no-repeat center;
+@image-gloss: url('../images/modal-gloss.png') no-repeat -200px -80px;
+@image-gloss-long: url('../images/modal-gloss-long.png') no-repeat -200px -80px;
+@image-noise: url('../images/img-noise-100x100.png');
+@image-bg: @panel-header-bg-color;
+@image-border-color: @panel-inner-border;
+
+/*footer*/
+@footer-height: 20px;
+@footer-bg-color: @brand-primary;
+
+/*table*/
+@table-border-color: @panel-inner-border;
+@table-bg-hover: @panel-header-bg-color;

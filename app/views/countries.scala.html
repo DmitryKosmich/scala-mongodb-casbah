@@ -1,0 +1,48 @@
+@(countries: List[Country])
+
+@import helper._
+
+@main("Todo list") {
+
+    <div class="row">
+        <div class="col-md-24">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Countries</h3>
+                </div>
+                <div class="panel-body">
+                    <div class = "table_wrapper flexcroll">
+                        <table class="table table-hover friends">
+                            <thead>
+                                <tr class="row">
+                                    <td>Country Code</td>
+                                    <td>Name</td>
+                                    <td>Capital</td>
+                                    <td>Region</td>
+                                    <td>Subregion</td>
+                                    <td>Population</td>
+                                    <td>Area</td>
+                                    <td>Gini</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            @countries.map { country =>
+                                <tr class="row">
+                                    <td>@country.cc</td>
+                                    <td>@country.name</td>
+                                    <td>@country.capital</td>
+                                    <td>@country.region</td>
+                                    <td>@country.subregion</td>
+                                    <td>@country.population</td>
+                                    <td>@country.area</td>
+                                    <td>@country.gini</td>
+                                </tr>
+                            }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}

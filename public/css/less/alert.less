@@ -1,0 +1,57 @@
+@import "variables.less";
+
+#alerts {
+  position: fixed;
+  top: 50px;
+  left: 10px;
+  list-style-type: none;
+  margin: 0px;
+  padding: 0;
+  z-index: 9999;
+  border: 0;
+}
+
+.alert{
+  width: 300px;
+  max-height: 300px;
+  color: #fff;
+  text-align: center;
+  background: #eee @image-gloss;
+  border: 0;
+}
+.alert:hover{
+  cursor: pointer;
+}
+
+.alert-success{
+  background-color: fade(@brand-success, 50%);
+}
+.alert-success:hover{
+  background-color: @brand-success;
+}
+
+.alert-info{
+  background-color: fade(@brand-primary, 50%);
+}
+.alert-info:hover{
+  background-color: @brand-primary;
+}
+
+.alert-warning{
+  background-color: fade(@brand-warning, 50%);
+}
+.alert-warning:hover{
+  background-color: @brand-warning;
+}
+
+.alert-danger{
+  background-color: fade(@brand-danger, 50%);
+}
+.alert-danger:hover{
+  background-color: @brand-danger;
+}
+
+.alert_icon{
+  padding: 10px;
+  color: #fff;
+}

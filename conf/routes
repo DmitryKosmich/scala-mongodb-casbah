@@ -1,0 +1,20 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# Home page
+GET        /                            controllers.Application.index
+
+# Map static resources from the /public folder to the /assets URL path
+GET        /assets/*file                controllers.Assets.at(path="/public", file)
+
+# Album
+GET        /album/all/:begin/:limit     controllers.AlbumCtrl.getAll(begin: Int, limit: Int)
+
+# User
+GET        /user/all                    controllers.UserCtrl.getAll
+GET        /user/:id                    controllers.UserCtrl.getOne(id:String)
+GET        /user/friends/:id            controllers.UserCtrl.friends(id:String)
+
+# Country
+GET        /country/all                 controllers.CountryCtrl.getAll

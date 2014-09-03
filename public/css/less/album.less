@@ -1,0 +1,49 @@
+@import "variables.less";
+
+.albumContainer{
+  position: relative;
+  text-align: center;
+  padding: 20px;
+  width: 100%;
+}
+
+.album{
+  background-color: @album-bg;
+  border:solid 1px @album-border-color;
+  overflow: hidden;
+  padding: 5px;
+  text-align: center;
+  margin: 5px;
+  width: 285px;
+  height: 170px;
+}
+
+.album:hover{
+  border:solid 1px @album-border-color-hover;
+}
+
+.albumImage{
+  background: @image-loader-min;
+  text-align: center;
+  max-width: 285px;
+  max-height: 157px;
+}
+
+.albumTitle{
+}
+
+.newAlbum{
+  background: none;
+  margin-top: 32px;
+  opacity: 0.2;
+  filter: alpha(opacity=20);
+}
+
+.albumWrapper{;
+  padding-bottom: 20px;
+  text-align: center;
+  max-width: 300px;
+  max-height: 210px;
+  overflow: hidden;
+  float: left
+}

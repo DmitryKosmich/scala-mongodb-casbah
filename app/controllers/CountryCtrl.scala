@@ -6,8 +6,8 @@ import models.Country
 
 object CountryCtrl extends Controller {
 
-  def getAll = Action {
-    Ok(views.html.countries(Country.all()))
+  def getAll(page: Int, limit: Int) = Action {
+    Ok(views.html.countries(Country.all(page, limit)))
   }
 
 }

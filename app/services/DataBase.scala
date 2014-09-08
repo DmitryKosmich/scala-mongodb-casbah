@@ -13,4 +13,12 @@ object DataBase {
     val db = mongoClient(DBName)
     db(collectionName)
   }
+
+  def setSelectors(cursor: MongoCursor, limit: Int): MongoCursor = {
+    if(limit>0){
+      cursor.limit(limit)
+    }else{
+      cursor
+    }
+  }
 }

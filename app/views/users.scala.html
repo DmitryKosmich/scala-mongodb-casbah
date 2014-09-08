@@ -18,7 +18,7 @@
                                     <td>Name</td>
                                     <td>Surname</td>
                                     <td>Home City</td>
-                                    <td>Emaail</td>
+                                    <td>Email</td>
                                     <td>Foursquare User Id</td>
                                     <td>Last update</td>
                                     <td>Points</td>
@@ -26,15 +26,27 @@
                             </thead>
                             <tbody>
                             @users.map { user =>
-                                <tr class="row">
-                                    <td><a href="@routes.UserCtrl.getOne(user.FQUserId)">@user.name</a></td>
-                                    <td>@user.surname</td>
-                                    <td>@user.homeCity</td>
-                                    <td>@user.email</td>
-                                    <td>@user.FQUserId</td>
-                                    <td>@user.lastUpdate</td>
-                                    <td>@user.points</td>
-                                </tr>
+                                @if(user != null){
+                                    <tr class="row">
+                                        <td><a href="@routes.UserCtrl.getOne(user.FQUserId)">@user.name</a></td>
+                                        <td>@user.surname</td>
+                                        <td>@user.homeCity</td>
+                                        <td>@user.email</td>
+                                        <td>@user.FQUserId</td>
+                                        <td>@user.lastUpdate</td>
+                                        <td>@user.points</td>
+                                    </tr>
+                                }else{
+                                    <tr class="row">
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td>no visited</td>
+                                        <td></td>
+                                    </tr>
+                                }
                             }
                             </tbody>
                         </table>
@@ -43,4 +55,7 @@
             </div>
         </div>
     </div>
+
+    <div id=pagination></div>
+    <script type="text/javascript" src="@routes.Assets.at("js/pagination/PAGER.js")"></script>
 }

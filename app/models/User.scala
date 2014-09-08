@@ -28,22 +28,18 @@ object User {
     result
   }
 
-  def search(obj: MongoDBObject): List[User] = {
+  def search(obj: MongoDBObject, page: Int, limit: Int): List[User] = {
     var list: List[User] = Nil
-    val users = collection.find(obj)
+    val users = DataBase.setSelectors(collection.find(obj), (page-1)*limit+limit)
     for(doc <- users) list = list ++ List(JsonHelper.toUser(doc))
-    list
+    list.drop((page-1)*limit)
   }
 
-  def all(): List[User] = {
+  def all(page: Int, limit: Int): List[User] = {
     var list: List[User] = Nil
-    val allUsers = collection.find()
+    val allUsers = DataBase.setSelectors(collection.find(), (page-1)*limit+limit)
     for(doc <- allUsers) list = list ++ List(JsonHelper.toUser(doc))
-    list
+    list.drop((page-1)*limit)
   }
-
-  def create(label: String, who: String, time: String) {}
-
-  def delete(id: Long) {}
 
 }

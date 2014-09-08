@@ -7,7 +7,7 @@
         <title>@title</title>
         <link rel="stylesheet" media="screen" href="@routes.Assets.at("css/styles.css")">
         <link rel="shortcut icon" type="image/png" href="@routes.Assets.at("images/favicon.png")">
-        <script src="@routes.Assets.at("js/jquery/jquery-1.11.1.min.js")" type="text/javascript"></script>
+        <script type="text/javascript" src="@routes.Assets.at("js/jquery/jquery-1.11.1.min.js")"></script>
     </head>
 
     <body>
@@ -21,14 +21,17 @@
 
             <nav class="navbar navbar-default">
                 <ul class="nav navbar-nav navbar-left">
-                    <li id="users" class="panel-title"><a href="@routes.UserCtrl.getAll">Users</a></li>
-                    <li id="countries" class="panel-title"><a href="@routes.CountryCtrl.getAll">Countries</a></li>
-                    <li id="albums" class="panel-title"><a href="@routes.AlbumCtrl.getAll(0, 0)">Albums</a></li>
+                    <li id="users" class="panel-title"><a href="@routes.UserCtrl.getAll(1, 10)">Users</a></li>
+                    <li id="countries" class="panel-title"><a href="@routes.CountryCtrl.getAll(1, 10)">Countries</a></li>
+                    <li id="checkins" class="panel-title"><a href="@routes.CheckinCtrl.getAll(1, 10)">Checkins</a></li>
+                    <li id="albums" class="panel-title"><a href="@routes.AlbumCtrl.getAll(1, 10)">Albums</a></li>
+                    <li id="statistics" class="panel-title"><a href="@routes.StatisticsCtrl.getAll()">Statistics</a></li>
                 </ul>
             </nav>
 
             @content
 
+            <script type="text/javascript" src="@routes.Assets.at("js/navitem-setter.js")"></script>
         </div>
         <footer class="text-center">
             <div class="content">

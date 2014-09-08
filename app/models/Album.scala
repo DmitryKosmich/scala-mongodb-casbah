@@ -17,32 +17,20 @@ case class Album(
 
 object Album {
 
-  val albumCollection = DataBase.getCollection("albums")
+  val collection = DataBase.getCollection("albums")
 
-  def all(begin: Int, limit: Int): List[Album] = {
+  def search(obj: MongoDBObject, page: Int, limit: Int): List[Album] = {
     var list: List[Album] = Nil
-    val allAlbums = setSelectors(albumCollection.find(), limit)
-    for(doc <- allAlbums) list = list ++ List(JsonHelper.toAlbum(doc))
-    list
-  }
-
-  def search(obj: MongoDBObject, limit: Int): List[Album] = {
-    var list: List[Album] = Nil
-    val albums = setSelectors(albumCollection.find(obj), limit)
+    val albums = DataBase.setSelectors(collection.find(obj), (page-1)*limit+limit)
     for(doc <- albums) list = list ++ List(JsonHelper.toAlbum(doc))
-    list
+    list.drop((page-1)*limit)
   }
 
-  def setSelectors(cursor: MongoCursor, limit: Int): MongoCursor = {
-    if(limit>0){
-      cursor.limit(limit)
-    }else{
-      cursor
-    }
+  def all(page: Int, limit: Int): List[Album] = {
+    var list: List[Album] = Nil
+    val allAlbums = DataBase.setSelectors(collection.find(), (page-1)*limit+limit)
+    for(doc <- allAlbums) list = list ++ List(JsonHelper.toAlbum(doc))
+    list.drop((page-1)*limit)
   }
-
-  def create(label: String, who: String, time: String) {}
-
-  def delete(id: Long) {}
 
 }

@@ -1,4 +1,4 @@
-@(albums: List[Album])
+@(albums: List[Album], page: Page)
 
     @import helper._
 
@@ -43,4 +43,7 @@
                 </div>
             </div>
         </div>
+
+        <div id=pagination></div>
+        <script type="text/javascript" src="@routes.Assets.at("js/pagination/PAGER.js")"></script>
     }

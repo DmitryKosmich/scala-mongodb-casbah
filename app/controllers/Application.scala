@@ -2,12 +2,12 @@ package controllers
 
 import play.api._
 import play.api.mvc._
-import models.Album
+import models.User
 
 object Application extends Controller {
 
   def index = Action {
-    Ok(views.html.albums(Album.all(0, 0)))
+    Redirect(routes.UserCtrl.getAll(1, 10))
   }
-  
+
 }

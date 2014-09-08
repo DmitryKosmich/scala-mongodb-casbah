@@ -17,19 +17,13 @@ case class Country(
 
 object Country {
 
-  val countryCollection = DataBase.getCollection("countries")
+  val collection = DataBase.getCollection("countries")
 
-  def all(): List[Country] = {
+  def all(page: Int, limit: Int): List[Country] = {
     var list: List[Country] = Nil
-    val allCountries = countryCollection.find()
+    val allCountries = DataBase.setSelectors(collection.find(), (page-1)*limit+limit)
     for(doc <- allCountries) list = list ++ List(JsonHelper.toCountry(doc))
-    list
+    list.drop((page-1)*limit)
   }
-
-  def create(label: String, who: String, time: String) {}
-
-  def delete(id: Long) {}
-
-  def complete(id: Long) {}
 
 }

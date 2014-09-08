@@ -1,0 +1,55 @@
+@(checkins: List[Checkin])
+
+@import helper._
+
+@main("Todo list") {
+
+    <div class="row">
+        <div class="col-md-24">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Checkins</h3>
+                </div>
+                <div class="panel-body">
+                    <div class = "table_wrapper flexcroll">
+                        <table class="table table-hover friends">
+                            <thead>
+                                <tr class="row">
+                                    <td>Name</td>
+                                    <td>Address</td>
+                                    <td>City</td>
+                                    <td>Country Code</td>
+                                    <td>Foursquare User Id</td>
+                                    <td>Foursquare Checkin Id</td>
+                                    <td>Lat</td>
+                                    <td>Lng</td>
+                                    <td>is Foursquare Checkin</td>
+                                    <td>Created</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            @checkins.map { checkin =>
+                                <tr class="row">
+                                    <td>@checkin.name</td>
+                                    <td>@checkin.address</td>
+                                    <td>@checkin.city</td>
+                                    <td>@checkin.cc</td>
+                                    <td>@checkin.FQUserId</td>
+                                    <td>@checkin.FQCheckinId</td>
+                                    <td>@checkin.lat</td>
+                                    <td>@checkin.lng</td>
+                                    <td>@checkin.isFQ</td>
+                                    <td>@checkin.created</td>
+                                </tr>
+                            }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id=pagination></div>
+    <script type="text/javascript" src="@routes.Assets.at("js/pagination/PAGER.js")"></script>
+}

@@ -9,7 +9,8 @@ object JsonHelper {
 
   def getString(json: JsValue): String = {
     val stringObj = Json.stringify(json);
-    stringObj.substring(1, stringObj.length-1)
+    val arr: Array[String] = stringObj.split("\"")
+    arr.mkString("")
   }
 
   def toAlbum(doc: DBObject): Album = {
@@ -22,7 +23,7 @@ object JsonHelper {
       getString(json\"previewSrc"),
       getString(json\"cc"),
       getString(json\"city"),
-      getString(json\"created")
+      getString(json\"created"\"$date")
     )
   }
 
@@ -55,6 +56,42 @@ object JsonHelper {
       getString(json\"area"),
       getString(json\"gini") ,
       getString(json\"flagSrc")
+    )
+  }
+
+  def toCheckin(doc: DBObject): Checkin = {
+    val json = Json.parse(""+doc)
+    Checkin(
+      getString(json\"name"),
+      getString(json\"address"),
+      getString(json\"city"),
+      getString(json\"cc"),
+      getString(json\"FQUserId"),
+      getString(json\"FQCheckinId"),
+      getString(json\"lat"),
+      getString(json\"lng"),
+      getString(json\"isFQ"),
+      getString(json\"created")
+    )
+  }
+
+  def toMessage(doc: DBObject): Message = {
+    val json = Json.parse(""+doc)
+    Message(
+      getString(json\"chatId"),
+      getString(json\"body"),
+      getString(json\"author"),
+      getString(json\"created")
+    )
+  }
+
+  def toChat(doc: DBObject): Chat = {
+    val json = Json.parse(""+doc)
+    Chat(
+      getString(json\"name"),
+      getString(json\"from"),
+      getString(json\"to"),
+      getString(json\"created")
     )
   }
 

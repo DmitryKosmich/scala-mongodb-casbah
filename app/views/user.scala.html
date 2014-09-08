@@ -1,4 +1,4 @@
-@(user: User, friends: List[User], albums: List[Album])
+@(user: User, friends: List[User], albums: List[Album], checkins: List[Checkin])
 
 @import helper._
 
@@ -28,37 +28,70 @@
                             </div>
                             <div class="panel panel-default">
                                 <div class="panel-heading">
-                                    <h3 class="panel-title trivial_text"><a href="@routes.UserCtrl.friends(user.FQUserId)" id = 'friends_head'>Friends</a></h3>
+                                    <h3 class="panel-title trivial_text">
+                                    @if(friends != Nil){
+                                        <a href="@routes.UserCtrl.search(user.FQUserId, 1, 10)">Friends</a>
+                                    }else{
+                                        <a href="#">Friends</a>
+                                    }
+                                    </h3>
                                 </div>
                                 <div class="panel-body">
                                     <ul id = 'friends_body'>
-                                    @friends.map { friend =>
-                                        <li>@friend.name @friend.surname</li>
-                                    }
-                                    <li><a href="@routes.UserCtrl.friends(user.FQUserId)" id = 'friends_head'>. . .</a></li>
+                                        @friends.map { friend =>
+                                            @if(friend != null){
+                                                <li>@friend.name @friend.surname</li>
+                                            }
+                                        }
+                                        @if(friends != Nil){
+                                            <li><a href="@routes.UserCtrl.search(user.FQUserId, 1, 10)">. . .</a></li>
+                                        }
                                     </ul>
                                 </div>
                             </div>
                             <div class="panel panel-default">
                                 <div class="panel-heading">
-                                    <h3 class="panel-title trivial_text"><a href="@routes.AlbumCtrl.getAll(0,0)" id = 'albums_head'  data-localize="albums" >Albums</a></h3>
+                                    <h3 class="panel-title trivial_text">
+                                        @if(albums != Nil){
+                                            <a href="@routes.AlbumCtrl.search(albums.head.FQUserId, 1, 10)">Albums</a>
+                                        }else{
+                                            <a href="#">Albums</a>
+                                        }
+                                    </h3>
                                 </div>
                                 <div class="panel-body">
                                     <ul id = 'albums_body'>
                                         @albums.map { album =>
-                                            <li>@album.name</li>
+                                            @if(album != null){
+                                                <li>@album.name</li>
+                                            }
                                         }
-                                        <li><a href="@routes.AlbumCtrl.getAll(0, 0)" id = 'albums_head'  data-localize="albums" >. . .</a></li>
+                                        @if(albums != Nil){
+                                            <li><a href="@routes.AlbumCtrl.search(albums.head.FQUserId, 1, 10)">. . .</a></li>
+                                        }
                                     </ul>
                                 </div>
                             </div>
                             <div class="panel panel-default">
                                 <div class="panel-heading">
-                                    <h3 class="panel-title trivial_text" ><a href="@routes.CountryCtrl.getAll" id = 'countries_head' data-localize="countries" >Countries</a></h3>
+                                    <h3 class="panel-title trivial_text">
+                                        @if(checkins != Nil){
+                                            <a href="@routes.CheckinCtrl.search(checkins.head.FQUserId, 1, 10)">Checkins</a>
+                                        }else{
+                                            <a href="#" id = 'albums_head'>Checkins</a>
+                                        }
+                                    </h3>
                                 </div>
                                 <div class="panel-body">
-                                    <ul id = 'countries_body'>
-                                        <li><a href="@routes.CountryCtrl.getAll" id = 'countries_head' data-localize="countries" >. . .</a></li>
+                                    <ul id = 'checkin_body'>
+                                        @checkins.map { checkin =>
+                                            @if(checkin != null){
+                                                <li>@checkin.name</li>
+                                            }
+                                        }
+                                        @if(checkins != Nil){
+                                            <li><a href="@routes.CheckinCtrl.search(checkins.head.FQUserId, 1, 10)">. . .</a></li>
+                                        }
                                     </ul>
                                 </div>
                             </div>
@@ -73,41 +106,24 @@
                                         <hr>
                                     </div>
                                     <div class="form-group">
-                                        <label for="home"  data-localize="home_city">Home city</label>
+                                        <label for="countries_count">Foursquare User Id</label>
+                                        <input type="text" class="form-control" id="countries_count" value="@user.FQUserId" readonly>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="cities_count">Last update</label>
+                                        <input type="text" class="form-control" id="cities_count" value="@user.lastUpdate" readonly>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="home">Home city</label>
                                         <input type="text" class="form-control" id="home" value="@user.homeCity" readonly>
                                     </div>
                                     <div class="form-group">
-                                        <label for="email"  data-localize="email">Email</label>
+                                        <label for="email">Email</label>
                                         <input type="text" class="form-control" id="email" value="@user.email" readonly>
                                     </div>
-                                    <hr>
                                     <div class="form-group">
-                                        <label for="user_points"  data-localize="points">Points</label>
+                                        <label for="user_points">Points</label>
                                         <input type="text" class="form-control" id="user_points" value="@user.points" readonly>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="countries_count"  data-localize="countries_count">Countries count</label>
-                                        <input type="text" class="form-control" id="countries_count" readonly>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="cities_count"  data-localize="cities_count">Cities count</label>
-                                        <input type="text" class="form-control" id="cities_count" readonly>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="area"  data-localize="area">Area</label>
-                                        <input type="text" class="form-control" id="area" readonly>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="population"  data-localize="population">Population</label>
-                                        <input type="text" class="form-control" id="population" readonly>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="frinds_count"  data-localize="frinds_count">Frinds count</label>
-                                        <input type="text" class="form-control" id="frinds_count" readonly>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="albums_count"  data-localize="albums_count">Albums count</label>
-                                        <input type="text" class="form-control" id="albums_count" readonly>
                                     </div>
                                 </form>
                             </div>
